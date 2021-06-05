@@ -1,0 +1,43 @@
+Npx is custom cli.
+npx create-react-app;
+
+Folder Str:
+1) node_modules
+2) npm install -> installs all the dependencies from the package.json file
+3) public >index.html
+          >whole js application works on this html file with root div.
+          >npm run build -> minified version: static asset: drag and drop netlify
+          >app.js > all of the components meet here
+          >index.js >calls that root div and imports all the components.
+          >either we do build by ourseleves or the hosting provider does that continuosly.
+
+Index.js
+----------          
+1) Import React from 'react' -> js module react imported/ since it ain't a file this'd be looked in the dependencies folder.
+2) We need to capitalize the name start to let react know it's unique component.
+3) import ReactDom from 'react-dom' -> ReactDom.render(<Function/>,document.getElementById('root')); 
+4) Stateless functional components->always returns jsx;even if empty.
+5) React.createElement('h1',{},'HTML TEXT') -> under the hood it expects these from the components.
+5) For the case if we need to provide children as we do in jsx, we'll need to invoke React.createElement fn recursively.
+6) Only a single element is to be returned.
+7)React.fragment could also be used in place of div for closing.
+
+Attributes:
+-------------------
+1) Camel case for html Attributes as onClick, and same goes for classes-> className
+2) Even for the self closing tags we need to put '/' at the end.
+
+
+Nested components:
+---------------------
+1) We'll create components with the capitalized name and then inside components put it in the std format <Message />
+2) When using {} to pass values we'll always need to pass them through some returnable value.
+3 {6+6}-> expression AC, {let x=6}->not AC
+
+Destructuring Objects:
+-------------------------
+1) const {img,title,author} = props;
+2) children Prop: Strict name adherence rightmost in props listing, accesses it for the ones it has been passed.
+<Book prop1,2,3>
+<p>This could be accessed using children prop </p>
+</Book>
