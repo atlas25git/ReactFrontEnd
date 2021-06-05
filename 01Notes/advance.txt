@@ -1,0 +1,13 @@
+Hooks
+-------
+1) Used to make components dynamic.
+2) Denoted by use* initals.
+
+useState
+---------
+1) Named export, needs be imported by exact name, it's a function.
+2) It's a fn that returns an array of states and a funcion, which'd be used to control the value of state.
+3) To access values of array, we'd need to provide some default value as argument to useState(1)[0];
+4) General convention: const[text,setText] = useState('random Title')
+5) The component name should start with a capital letter.
+6) hook needs be in the fn body.

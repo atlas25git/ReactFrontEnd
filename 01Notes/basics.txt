@@ -41,3 +41,27 @@ Destructuring Objects:
 <Book prop1,2,3>
 <p>This could be accessed using children prop </p>
 </Book>
+
+Passing fn by reference:
+------------------------
+1) To pass fn with a custom input and also such that it doesn't get executed then and there itself
+   we provide it as under fn fn, as onClick={() => complexFn(input)}
+
+Event Object
+---------------
+1) In all of our eventHandler we can use the event object which contains a list of events out of which
+   the specific one could be targeted.
+2) Pass any var in the fn arguments and use the same to target other options.
+
+Import-Export Statement
+------------------------
+1) For a const array export : export const books = [] |-> it'll be import {books} from './books',
+2) Named export names should be exacty be same.
+3) Export default -> only one name should be same as the component.
+4) For default export we do not exactly need to match the name, it could be exported using any name given that the
+   path is accurate.
+
+Deploying
+----------------
+1) Drag and drop -> upload the build folder :: npm run build
+2) Continuous deployment.
