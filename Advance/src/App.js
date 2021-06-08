@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorial/3-conditional-rendering/final/3-show-hide';
+import Setup from './tutorial/6-useReducer/final';
 
 
 function App() {

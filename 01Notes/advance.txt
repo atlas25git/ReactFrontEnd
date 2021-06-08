@@ -11,3 +11,65 @@ useState
 4) General convention: const[text,setText] = useState('random Title')
 5) The component name should start with a capital letter.
 6) hook needs be in the fn body.
+
+Getting the value previously set state:
+--------------------------------------
+1) When we cal the setter fn using the usual notation, we get to change the value stored previously by just one,
+->setValue(value+1): increments, but doesn't take delayed response.
+->setValue((prevState))=>{return prevState+1}: every time gets the persisting value.//prevState is just a alias, could be named anything.
+2) Both of these notations could be used on contingency.
+
+
+useEffect:
+----------
+1) Hook used to deal with work outside the components.
+2) Title changing, data fetch etc.
+3) Is called everytime render is called.
+4) Hooks can't be placed in conditionals but they could be implemented under the hook body.
+5) Second argument: array: [] empty array to just to run the useEffect on intial render.
+6) [value] : now it'd render everytime the value is changed.
+7) [] : contains the dependency lists.
+8) Adding event listeners using useEffect needs to be checked so that it just dooesn't continue to add it.
+9) Should remove the event listener after it is called again.
+10) []: could be used if there's just one eventListener that's to be added.
+11) To remove the added listener, we use a cleanup fn which we return using return statement of the fn.
+
+Fetching Data using useEffect:
+------------------------------
+1) We cannot make it async-await, for this we'll need to wrap the hook in a fn.
+2) We need to provide a init state empty arrray to circumvent infinite loop of rendering of useEffect hook.
+3) getUsers is a fn to get the fetched data with async-await functionality.
+4) It is called from the useEffect hook given that it runs on every rerender. 
+
+Forms
+-----
+1) Input tag is used as usual like in html, prevent dfault circumvents the default behavior, that is refreshing  the form 
+   after submission.
+2) EventPArameter.preventDefault();
+3) Submission paradigms: 1)onSubmit={handleSubmit}->added in form-> handleSubmit is a user defined fn, which has the option of EventPArameter.
+                         2)onClick={handleSubmit}-> added in submit button
+                         3) The event parameter in user defined fn makes available to the wide options available.
+4) useState is used as avalue in input field and is changed using the set fn available with it.
+5) And this change is realized as:
+    1) value={firstName}
+    2) onChange={(e)=>setFirstName(e.target.value)}
+6) Default html behavior makes the form to be submitted everytime a refresh is hit, which is an event of common occurrence in react, 
+   also that the default behavior of button is submit. as exp,lained:
+    Buttons like <button>Click to do something</button> are submit buttons.
+    Set type="button" to change that. type="submit" is the default.
+7) For a multiple input form we use an object of the type and update its values using dynamic properties of JS.
+   setPerson({...person, [name]: value});name and values are discerned by EventPArameter.target.name/value.
+8) For submit we'll check all the values for not being null{register not redaction}.
+
+useRef:
+------
+1) Alot like useState, preserves values b/w renders.
+2) Doesn't trigger re render.
+3) Targets Dom elements.
+4) useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). 
+   The returned object will persist for the full lifetime of the component.
+
+useReduces:
+-----------
+1) index.js is the main entry point of any directory.
+2) 
