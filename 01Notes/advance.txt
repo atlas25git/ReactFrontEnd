@@ -69,7 +69,46 @@ useRef:
 4) useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). 
    The returned object will persist for the full lifetime of the component.
 
-useReduces:
+useReducer:
 -----------
+variation of basic ones/edge cases use
 1) index.js is the main entry point of any directory.
-2) 
+2) Basically it's just a variation of useState, so just a more sophisticaated way of structuring the code.
+      const [state, dispatch] = useReducer(reducer, initialState);
+      
+      function reducer(state, action) {
+         switch (action.type) {
+           case 'increment':
+             return {count: state.count + 1};
+           case 'decrement':
+             return {count: state.count - 1};
+           default:
+             throw new Error();
+         }
+      }
+3) The dispatch fn under the hood acts on reducer. It passes the given input as an object to the reducer, so we're not
+   directly affecting state as in the case of useState, where we directly used setState fn.
+4) To handle uncatched events we could either return state or more sophisticated error using throw new error
+
+propDrilling
+-------------
+1) Not an official term.
+2) Useful when state has to be passed in a big context tree.
+3) Idea behind this concept is that we need to pass a fn to some component which is deeply nested and can't just directly be passed
+   with the functionality.
+4) Ultimately it'll be passed through the components in the layer.
+5) This nightmarish phenomenon could be circumvented by using context API/ context Hook.
+
+useContext
+----------
+1) const PersonContext = React.createContext();
+2) <PersonContext.provider value='something'>
+   </PersonContext.provider>
+   This will wrap the entire application inside return.
+4) Now the value that we provided could be accessed just by using: useContext(PersonContext);
+
+customHooks
+-----------
+1) User built custom hooks.
+2) The one used here returns fetched data from the given url.
+3) Name needs to be started with use, and export would consist of variable and its setter.

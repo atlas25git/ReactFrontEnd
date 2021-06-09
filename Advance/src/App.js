@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorial/6-useReducer/final';
+import Setup from './tutorial/9-custom-hooks/final/1-fetch-example'
 
 
 function App() {
