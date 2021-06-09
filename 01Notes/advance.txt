@@ -112,3 +112,85 @@ customHooks
 1) User built custom hooks.
 2) The one used here returns fetched data from the given url.
 3) Name needs to be started with use, and export would consist of variable and its setter.
+
+Advanced React
+--------------
+
+Prop Types
+----------
+1) If there's some data inconsistency we'll get a broken app behavior.
+2) If such error is encountered and we've got no clue why is it so, just remove component's fields which 
+   employ the api data, and console log them.
+3) But to be more specific about the field the problem stems from, we use PropTypes.
+ Product.propTypes = {
+    image: PropTypes.object.isRequired,
+    --- for all the fields
+ }
+
+ Dealing with inconsistent Props:
+ -----------------------------------
+ 1) Default props: 
+   
+   Product.defaultProps = {
+       all the fields: 'default-values',
+      .
+      .
+      .
+   }
+   But this way would cause issues in the case if image is accessed using url, and default value is non comprised
+   of url.
+   To deal with this we define a variable url seperately.
+   url = image && image.url;-> now url would only be checked if image is available on the api call.
+   url || defaultImage
+
+React-router
+------------
+1) We aim to achieve least rendering in skipping pages and that is aachieved by using routers.
+2) React naively doesn't have a default routing system.
+3) Basically we create a router tag and within it we include the component we're defining as our route.
+4) Basically this component would be returned at the enlisted route.
+   <Router>
+      <Route path="/">
+         <component/>
+      </Route>
+   </Router>
+5) We need to add exact path="/" , otherwise all the routes with matching even just one char, would be displayed.
+6) To deal with this isse we use swtch, here only the exactly matching route would be activated.
+7) Non changing react components are placed in the route at the top.
+8) as <Navbar>
+9) Parameters to url are added using /person/:id as:
+   <Route path="/person/:id" children={<Person>}><Route>
+   And this will be fetched as:
+   <Link to={'/person/${person.id}'}> LinkName </Link>
+10) useParams: hook provided by react router.
+12) Caveat! the params passed using urls are strings, and in find operations we got to use them as int, for the same
+    type conversions are done.
+    parseInt(string_thing);
+
+Performance Optimization:
+-------------------------
+1) Only for complex cases of project devs.
+
+Memoization
+------------
+1) Storing data for the contingency of re rendering behavior
+   of the implicit components on detection of changes in parent 
+   component.
+2) The memo function here memoizes that it ain't the prop in question
+   that has been changed, and hence saves recursive fn calls.
+
+useCallBack
+-----------
+
+1) With Memoization we dealt with the var type props, but for the props which are functions,
+   and when their state is changed, that state change triggers a recreation of method that we passed as prop.
+2) Now this makes react guess that this way props has been changed, as new fn has been created.
+3) To circumvent this issue we use useCallBack hook.
+4) Here too we wrap the fn inside hook, and pass a dependency array.
+
+5) useCallBack could be used to circumvent the conditions where addn of full dependencies would create a infinite loop,
+   with useCallBack it ensures and puts a duress for the component to change only on the specified dependencies.
+useMemo
+-------
+1) Used for external fns which are triggered everytime, use memo stores the value and only computes for the case,
+   when the provided dependencies change.

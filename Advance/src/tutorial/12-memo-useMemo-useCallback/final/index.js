@@ -41,6 +41,13 @@ const Index = () => {
     </>
   )
 }
+//Memoization
+//------------
+//Storing data for the contingency of re rendering behavior
+//of the implicit components on detection of changes in parent 
+//component.
+//The memo function here memoizes that it ain't the prop in question
+//that has been changed, and hence saves recursive fn calls.
 
 const BigList = React.memo(({ products, addToCart }) => {
   // useEffect(() => {
