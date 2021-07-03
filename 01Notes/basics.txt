@@ -9,7 +9,7 @@ Folder Str:
           >npm run build -> minified version: static asset: drag and drop netlify
           >app.js > all of the components meet here
           >index.js >calls that root div and imports all the components.
-          >either we do build by ourseleves or the hosting provider does that continuosly.
+          >either we do build by ourseleves or the hosting provider does that continuously.
 
 Index.js
 ----------          

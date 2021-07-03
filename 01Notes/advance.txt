@@ -44,17 +44,17 @@ Fetching Data using useEffect:
 Forms
 -----
 1) Input tag is used as usual like in html, prevent dfault circumvents the default behavior, that is refreshing  the form 
-   after submission.
+   after submission. And values are changed using onChange and then useState fn. e.target.value. 
 2) EventPArameter.preventDefault();
 3) Submission paradigms: 1)onSubmit={handleSubmit}->added in form-> handleSubmit is a user defined fn, which has the option of EventPArameter.
                          2)onClick={handleSubmit}-> added in submit button
                          3) The event parameter in user defined fn makes available to the wide options available.
-4) useState is used as avalue in input field and is changed using the set fn available with it.
+4) useState is used as a value in input field and is changed using the set fn available with it.
 5) And this change is realized as:
     1) value={firstName}
     2) onChange={(e)=>setFirstName(e.target.value)}
 6) Default html behavior makes the form to be submitted everytime a refresh is hit, which is an event of common occurrence in react, 
-   also that the default behavior of button is submit. as exp,lained:
+   also that the default behavior of button is submit. as explained:
     Buttons like <button>Click to do something</button> are submit buttons.
     Set type="button" to change that. type="submit" is the default.
 7) For a multiple input form we use an object of the type and update its values using dynamic properties of JS.
@@ -74,8 +74,9 @@ useReducer:
 variation of basic ones/edge cases use
 1) index.js is the main entry point of any directory.
 2) Basically it's just a variation of useState, so just a more sophisticaated way of structuring the code.
+   Here the state is an object to not be dealt with n different useStates/
       const [state, dispatch] = useReducer(reducer, initialState);
-      
+   
       function reducer(state, action) {
          switch (action.type) {
            case 'increment':
@@ -89,6 +90,7 @@ variation of basic ones/edge cases use
 3) The dispatch fn under the hood acts on reducer. It passes the given input as an object to the reducer, so we're not
    directly affecting state as in the case of useState, where we directly used setState fn.
 4) To handle uncatched events we could either return state or more sophisticated error using throw new error
+5) dispatch({type: "Testng"}) ->  const reducer = (state,action) =>{//fn body}
 
 propDrilling
 -------------
@@ -142,6 +144,7 @@ Prop Types
    To deal with this we define a variable url seperately.
    url = image && image.url;-> now url would only be checked if image is available on the api call.
    url || defaultImage
+   image is the field containing url.
 
 React-router
 ------------
@@ -171,7 +174,7 @@ Performance Optimization:
 -------------------------
 1) Only for complex cases of project devs.
 
-Memoization
+Memoization: For Component
 ------------
 1) Storing data for the contingency of re rendering behavior
    of the implicit components on detection of changes in parent 
@@ -179,7 +182,7 @@ Memoization
 2) The memo function here memoizes that it ain't the prop in question
    that has been changed, and hence saves recursive fn calls.
 
-useCallBack
+useCallBack: For functions
 -----------
 
 1) With Memoization we dealt with the var type props, but for the props which are functions,
