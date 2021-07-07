@@ -1,0 +1,33 @@
+Var vs Let
+----------
+Main difference is scoping rules. Variables declared by var keyword are scoped to the immediate function body 
+(hence the function scope) while let variables are scoped to the immediate enclosing block denoted by { } 
+(hence the block scope).
+
+Arrow Fn
+--------
+const varName = (n) => {console.log(n)}
+varName(n);
+
+Normal
+------
+function print(arg){console.log()};
+
+Exports Imports
+---------------
+When exported default then any name could be used, but if they aren't any default 
+then we better use named imports.
+
+In Js
+-----
+Class constructors are mentioned by the exact name. constructor(){}.
+Inheritance using extends keyword, super() should be called in child's constructor.
+
+Spread && Rest
+--------------
+'...' spreads up array or object.
+Used in functions for multiple inputs, as it commbines them into an array/\.
+
+Destructuring
+-------------
+{propName} = {object values}

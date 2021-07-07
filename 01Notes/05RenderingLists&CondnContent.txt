@@ -1,0 +1,92 @@
+DynamicLists
+
+array.map(fn)
+-------------
+1. Applies fn on every element of the array, and creates the transformed array.
+2. {[<Card/> , <Card/>]} -> this can be safely rendered by react.
+3. {props.listName.map( 
+    (expense) => (
+        <ExpenseItem
+            title = {expense.title}
+        />
+    )
+ )}
+
+ StateFul listen:
+ ----------------
+ 1. useState hook.
+ 2. const[expenses,setExpenses] = useState(Dummy_data);
+ 3. setExpenses([expense,...expenses]); < setExpenses( prevExpenses => {
+                                                                            return [expense, ..prevExpenses]
+                                                                        })
+
+Key:
+----
+1. JS needs a unique key value so as to add the elements in the map in O(1), rather traversing the whole list and making the operation
+    expensive, this way it searches through all and reloads each and every element.
+2. Once the keys are given ract can discern the position of the newly added item.
+
+Applying Filter:
+----------------
+1. We use ternary condition for this.
+
+Dynamic Styling:
+----------------
+1. Style seeks an object as key value names.
+2. Either use camel case version or mark the property name in a string.
+3. 'background-color' || backgroundColor
+4. Here we calculated the percetnage of current bar's height in respect to max height, and then added custom height to it, in our css.
+
+Styling React Components:
+-------------------------
+1. Make a state.
+2. If inputData.trim() === 0, put flag to false;
+3. Then in style: style = {{color: !isValid ? 'red' : 'black'}}
+4. And in the input event listener onChange->setState to true if input is valid.
+
+Alternative to Inline Styles:
+-----------------------------
+1. Make classes for the cases and add them.
+2. className = {'form-control'} as className={`form-control ${!isValid?'invalid':''}`
+
+Styled Components:
+------------------
+1. By default css styles are global, hence might lead to collision for same named styles.
+2. Styled components helps us with the modularization.
+3. npm install --save styled-components
+4. import styled from 'styled-components'
+5. const Button = styled.button`
+                                //copy the css here
+                                //here we can skip the selectors that go by tag name
+                                //.button = nothing just the css without {}
+                                //.button::focus = &:focus{}
+
+                                `
+6. What basically this module serves us is that it takes the user given css inputs, wraps them in randomly generated classNAmes
+   and these are then added in the global css, hence averting any chance of collision that might have occurred otherwise.
+
+Creating Dynamically Styled divs:
+---------------------------------
+1. We can create a component for the div as in our case, div roots the class form-control.
+2. Thus we create a styled component FormControl, here we use styled.div``
+3. Inside the backTicks paset the entire css of form control.
+4. To pass the invalid class, we can either do that using className={!invalild && 'invalid'}, or we can do that using props method.
+5. Props method: invalid={!isValid}, now this invalid prop could be used inside those `` as:
+    color: ${props => (props.invalid ? 'red' :'black')};
+6. Using media query:
+     @media(min-width: 768px)
+     {
+         width: auto;
+     }
+
+
+Using CSS module:
+-----------------
+1. Import styles from 'cssFilePath'
+2. Rename css file as name.module.css
+3. Now our styles will be an object, and we can access particular styles using style.className
+4. This is provide us with the required scoping.
+5. Dynamic styling:
+    5.1 styles['form-control']  
+    5.2 className={`${styles['form-control]} ${!isValid && styles['invalid']}`}
+6. media query could be added in the original css file.

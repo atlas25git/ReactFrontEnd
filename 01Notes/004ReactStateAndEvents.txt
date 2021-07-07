@@ -1,0 +1,81 @@
+Handling Click Events:
+----------------------
+1. On all built in html elements we've full access to <div>,<h2>... to native DOM events to listen too.
+2. This could be used as a prop.
+3. JS method: document.getElementById('root').addEventListener()
+4. React: al default event listeneres in react start with on*
+            They take a fn as value.
+            onClick={()=>{console.log('Clicked!')}}
+            When inserting pre defined functions we just point the fn Name.
+
+Component Fn:
+------------
+1. We mention the fn in components and let the react know, it the executes them and others within them.
+2. React does the redering stuff once, hence we need to use states to circumvent this.
+
+State:
+------
+1. To trigger re evaluation accompanying some cta.
+2. import React,{useState} from 'react'; 
+3. const [title,setTitle] = useState(props.title);
+4. States are created on  a per component basis.
+5. The prevalence of const: we do define the state return values by const.
+6. But we're also holding on to it to change but this dichotomy is answered by the fact that, '=' is not used
+   for re assignment, thus we use setTitle(val).
+7. State doesn't re initalize the states on subsequent calls, it is done only for the first time.
+8. In the latter events react just grabs a hold of the value given and returns the same.
+
+Adding Forms:
+------------
+1. To get inputs we need to add listeneres to the inputs.
+2. And input is taken out from the event object being returned from the onChange element.
+3. .value holds the entered input.
+    Eg: 
+        const titleChangeHandler = (event) => {
+            console.log(event.target.value);
+        }
+        <input type='text' onChange={titleChangeHandler}/> 
+4. useState is used here to store the input in some variables.
+5. We add multiple states using useState, for all the form's input fields.
+6. Value accessed using eventobject are always strings.
+7. Rather a single state could also be used.
+8. Pass an object including all the input fields, in use State input.
+9. But keep in mind in every update we need to copy the other values to. setUserInput({...userInput,updateField : updateValue});
+10. Updating States depending on previous state:
+    >safer method.
+    >since react schedule state updates, rather than instantly doing them, hence we might end up with 
+    >an outDated value.
+    setUserInput((prvState)=>{
+        return {...prevState, updateField:event.target.value}
+    })
+
+Handling Form Submission:
+-------------------------
+1. Browser's default behaviour refreshes the form when submite button is pressed, hence sending an automatic req to the server
+   about from submission. But we want to deal with is using js.
+2. To circumvent this we use: 
+    const submitHandler = (event) => {
+        event.peventDefault();
+        //data manipulation
+    }
+
+Adding 2 way Binding:ControlledComponent
+----------------------------------------
+1. Not just listen to value but would also re instatiate value back to the input.
+2. In the onSubmitHandler when we're dealt with the utility of data, we can use the state fns to set them back to empty strings.
+
+Child To Parent Component Communication(StateLIfting):
+----------------------------------------
+1. Passing data up: The other way that is parent to children is done using props.
+                    The other way round CtoP could be done by passing a fn as a prop to the child, which in turn would set the asked value.
+                    Or return it.
+                    Eg: 
+                     const fn = (data)=>{
+                         const newData = data;
+                     }
+                    <ChildComponent fnName={fn}/>
+                    And this fn could thus be used in the childComponets onSubmitHandler fn.
+                    From here we can thus pass the saved values of form as this fn's argument.
+2. We can only communicate between parent and child components there is no way as such for communication in sibling components.
+3. To achieve communication between two sibling components we use the lowest common ancestor in the tree for the passage of data.
+
