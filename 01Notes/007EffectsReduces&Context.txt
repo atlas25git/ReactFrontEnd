@@ -19,4 +19,8 @@ UseReducer:
 1. Complex state management, on the lines of useState.
 2. PowerFul alternative for complex state management. When states depend on other states.
     const [state,dispatchFn] = useReducer(reducerFnm, intialState, initFn);
-3. 
+
+Context:
+--------
+1. Provider and Consumer.
+2. Once in provider every component at any level could consume.
