@@ -1,0 +1,22 @@
+UseEffect Dependencies:
+-----------------------
+1. useEffect(() => {
+    //fn
+},[//Dependencies]);
+2. Basically runs the code on some side effect being triggered.
+3. This can be used to check for multiple dependencies and thier changes inherent.
+4. This adds mosularity to code as we can check for multiple conditons on change i just once place.
+5. Rather than extending the cod to every component handler.
+6. We can even setTimeout -> to check delayed validations.
+7. This could be running for each new keyStrokem to make it static we add a cleanup functions. 
+8. clearTimeout(identifierName);
+9. So now the function insted of starting timers for each event, would now only keep the latest addition.
+10. Subsequent cleanUps would be done, and validation fn would be called after set time out once the input has stopped from changing.
+
+
+UseReducer:
+-----------
+1. Complex state management, on the lines of useState.
+2. PowerFul alternative for complex state management. When states depend on other states.
+    const [state,dispatchFn] = useReducer(reducerFnm, intialState, initFn);
+3. 

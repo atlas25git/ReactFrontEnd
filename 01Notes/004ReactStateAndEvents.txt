@@ -65,7 +65,8 @@ Adding 2 way Binding:ControlledComponent
 2. In the onSubmitHandler when we're dealt with the utility of data, we can use the state fns to set them back to empty strings.
 
 Child To Parent Component Communication(StateLIfting):
-----------------------------------------
+-----------------------------------------------------
+Meta: We basically pass a fn to child whereupon that fn is called with required inputs.
 1. Passing data up: The other way that is parent to children is done using props.
                     The other way round CtoP could be done by passing a fn as a prop to the child, which in turn would set the asked value.
                     Or return it.

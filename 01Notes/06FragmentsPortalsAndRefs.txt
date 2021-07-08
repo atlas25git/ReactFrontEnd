@@ -1,0 +1,33 @@
+JSX Limitations:
+----------------
+1. We cannot return more than one jsx element from a component.
+2. Using a file to wrap elements which would just return props.children, and thus have no divs.
+    const wrapper = (props) => {
+        return props.children;
+    }
+    same as <React.Fragment></React.Fragment>
+            <></>
+
+
+Portal:
+-------
+1. Modals are deeply nested rather being an overlay.
+2. Structurally this is incorrect.
+3. For this we use portals, thus this enables us to use overlays, with right strcture.
+4. Modal thus enables it implicitly be placed as an overlay.
+5. Place to port, this is added in index.html probably above the root div.
+6. Now we tell modal component where to port to.
+7. We use react-dom to port them to the defined route.
+8. ReactDOM.createPortal(<Backdrop onClick={props.onConfirm}/> ,document.getElementByID('backdrop-root') )
+    similarly we add other overlays as well. 
+
+References:
+-----------
+1. We can connect any html element with References, ref = {definedRefName}, definedRefName will now have the given value.
+2. NOw we can avert the use of multiple listener and input states for each target and also it's value parameter, 
+   which we used to clear the input field.
+3. Now instead of listening to each key stoke we can just now use reference to store the value when the form is submitted.
+4. For this we create  ref using useRef(), now we tie to some html element, and thus the input value on submit button would be
+    saved in this ref, and thus this could be used as refName.current.val;
+5. Now for the resetting logic we can defineRef.current.val = '';
+6. Ref are uncontrolled components.
