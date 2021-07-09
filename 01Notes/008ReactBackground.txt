@@ -1,0 +1,9 @@
+1. ReactDom & React are quite insular with each other.
+2. React uses virtual dom, and ReactDom helps with materializing the dom image to 
+    make it real.
+3. Virtual comparisons are done.
+4. Only the diff in virtual doms are reflectd, in this case being react components they are re rendered.
+5. The point here is that entire component is re run but in th real dom only the changes are reflectd, specifically
+    the component where state/props/context are managed.
+6. 
+
