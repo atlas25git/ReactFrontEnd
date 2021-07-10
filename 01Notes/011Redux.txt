@@ -1,0 +1,119 @@
+States:
+-------
+1) State types:
+    a) Local
+    b) Cross Component
+    c) App wide
+
+2) Redux vs React Context: npm install redux react-redux
+    1) Context has some disadvantage:
+        A) Becomes complex in bigger apps.
+        B) Suitable for low frequency updates.
+
+3) Working of Redux:
+    1) There's on centra data store.
+    2) Components subscribe to this CDS, and whenever there's a change CDS notifies them.
+    3) Components do not directly manipulate data in CDS, we've a downward stream only.
+    4) Reduer fn mutates the CDS content.
+    5) Componenets trigger actions which leads to Reducer, and then it alters the CDS.
+
+            fwd->
+        ------------Reducer
+        |              |mutates
+        |              | 
+      Action          CDS
+        |              |
+        |              |subs
+        ------------Component
+        <-Dispatch
+    
+ReduxCore:
+----------
+1) npm install Redux.
+2) Reducer fn: args(OldState,DispatchedAction)->op(NewStateObject)
+
+3) 
+
+    cosnt redux = require('redux');
+    const countReducer = (state={counter:0},action) => {
+        if(action.type==='increment')
+        {
+            return {
+            counter: state.counter+1;
+            }
+        }
+        //This will be the case during intialization, as well as wildCard options.
+        //returns default provided state.
+        return state;
+    }
+    const store = redux.createStore(countReducer);
+   
+    ------------This part is used in proj-----------
+    export default store;
+    ------------------------------------------------
+   
+    const counterSubscriber = () =>
+    {
+        const latestState = store.getState();
+        console.log(latestState);
+    }
+
+    store.subscribe(counterSubscriber);
+    //here reducer will run counterSubscriber everytime data in CDS altered.
+
+    store.dispatch({type: 'increment'});//runs the reducer which is a simple fn with just one return.
+
+    //On code execution counter subscriber will be executed for the dispatched action.
+
+ProvidingRedux to React
+-----------------------
+1. In app.js file:
+    import {Provider} from 'react-redux';
+
+    ReactDOM.render(
+        <Provider>
+            <App/>
+        </Provider>,
+        document.getElementById('root)
+    );
+
+Using Redux Data in components:
+-------------------------------
+1. In component file:
+    import {useSelector} from 'redux';
+
+    //Inside component fn:
+    const counter = useSelector(state => state.counter);
+    //Now a subscription will automatically be created, and our component
+    //would recieve the latest counter value.
+
+    //if the component is dismounted, redux will automatically unsubscribe.
+
+Dispatching From Componenets
+----------------------------
+1. Created such buttons.
+    import {useSelector,useDispatch} from 'redux-redux';
+
+    //In component fn:
+    //In button's onClick-> addFn handlers;
+    1. create an objet of useDispatch(); class
+    2. Now from the handler fns wired in the buttons make dispatch calls:
+        
+        const incrementHandler=()=>{
+            dispatch({type:'increment'});
+        };
+
+Adding Payloads in Dispatches:
+------------------------------
+1. It's just simply added in the fn call and accessed using action.propName 
+    const incrementHandler=()=>
+            {
+                dispatch({type:'increment',amount: 10});
+            };
+action.amount
+
+##WE DO NOT CHANGE EXISTING STATE, AWLAYS RETURN A NEW VALUE.
+
+Redux TOOLKIT:
+--------------
+1. npm install @reduxjs/toolkit

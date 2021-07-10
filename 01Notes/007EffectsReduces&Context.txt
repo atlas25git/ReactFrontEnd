@@ -12,7 +12,18 @@ UseEffect Dependencies:
 8. clearTimeout(identifierName);
 9. So now the function insted of starting timers for each event, would now only keep the latest addition.
 10. Subsequent cleanUps would be done, and validation fn would be called after set time out once the input has stopped from changing.
+11. React will run it when it is time to clean up:
 
+useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    // Specify how to clean up after this effect:
+    return function cleanup() {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
 
 UseReducer:
 -----------

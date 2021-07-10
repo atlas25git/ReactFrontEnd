@@ -1,0 +1,8 @@
+Forms:
+------
+1. Vagaries in states cause it to seem way too complex.
+2. Three sides of validation:
+    A) onSubmit
+    B) loseFocus
+    C) onKeyStroke
+3) preventDefault : so as to not send the req http to server.

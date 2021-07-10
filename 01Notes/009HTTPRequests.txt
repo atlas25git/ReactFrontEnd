@@ -1,0 +1,112 @@
+DB:
+---
+1) React should talk to DB using some server, as it provides secure hold for creds.
+2) But the front end code is always visible, thus can't store DB creds.
+
+Sending Get Requests
+--------------------
+1) Fetch API -> send/recieve data.
+2) fetch('url').then(res=>{
+    //executes once the fetch process is complete.
+    return res.json();
+}).then(
+        data =>{
+            const transformedARR = data.results.map(movieData=>
+            {
+                return {
+                    id : movieData.episode_id,
+                    //and other fields of our new object
+                }
+            })
+            useStateFn(data.results);
+        }
+)
+
+3) Now put the fetch handler in onClick of a button.
+
+4) Async Await: this just adds to the readablility of code, by eliminating .then(s) //
+    Transforms in to .then paradigms.
+    async function fetchM<oviesHandler()
+    {
+        const response = await fetch(url);
+        const data = await response.json();
+        const transformedARR = data =>{
+            const transformedARR = data.results.map(movieData=>
+            {
+                return {
+                    id : movieData.episode_id,
+                    //and other fields of our new object
+                }
+            })
+            useStateFn(data.results);
+        }   
+    }
+
+5) Loading component: create a new state, and once we eneter the async fn
+        above fetch put isLoading's state as true, and then once we exit the fn , 
+        put the state to off mode.
+        Then in html element we can use short cicuiting with && to toggle the functionality.
+
+6) Handling http  errors:
+    Introduce a error state using useState
+    
+    try {
+        //in the response that we fetched we can now check for res.ok || res.status
+        //and thus can throw a real error object.
+        //all the async await fn calls.
+        if(!res.ok)throw new Error('Some string');
+    }
+    catch(error)
+    {
+        setError(error) //> the error state
+    }
+
+7) Noe this error generated could be used to render something on the screem to handle the contingencies.
+8) {!isLoading && error && <p>{error}</p>}//error is the state that we have created.
+
+useEffect for making Requests
+-----------------------------
+1) Used if we want the data to be loadeds as soon as the page is visited, without the need of explicitly pressing any button.
+2) Used when data should be fetched in some component cycle.
+3) Now in this useEffect we can add a dependecy of the fn we're calling, if we use some external state in our fn.
+4) But this will thus trigger the infinite loop as compnent will change data, and data component.
+5) For this wwe simply wrap the fn in a useCallback state.
+
+Sending POST requsts:
+--------------------
+Try and catch blocks could also be added here to deal with the stuff, in case of any exigencies.
+
+async function addMovieHandler(movie){
+    const response = await fetch(
+        urlString,
+        {
+            method: 'GET/POST',
+            body: JSON.stringify(movie), //jsonData    
+            headers: {
+                'Content-Type': 'appication/json'
+            }
+        }
+    );
+    const data = await response.json();
+}
+
+Custom Hooks:
+-------------
+1) We can't use our hook's fn to alter the state's value outside the component fn. 
+2) Hence to add mosularity to this, we're introduced with the concept of custom hooks.
+3) Name starts with use*
+4) export 
+5) const useCount = () =>{
+    //fn definition
+}
+6) For every component or instantiation customHooks create different states.
+
+Custom HTTP hook:
+
+const useHttp = () => {
+
+    //fetch logic
+    //upStream and downStream
+
+};
+export default useHttp;
