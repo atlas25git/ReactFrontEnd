@@ -29,12 +29,13 @@ States:
     
 ReduxCore:
 ----------
-1) npm install Redux.
+1) npm install redux//main implementation however to connect it with react we use a helper// react-redux .
 2) Reducer fn: args(OldState,DispatchedAction)->op(NewStateObject)
 
 3) 
 
     cosnt redux = require('redux');
+    
     const countReducer = (state={counter:0},action) => {
         if(action.type==='increment')
         {
@@ -46,6 +47,7 @@ ReduxCore:
         //returns default provided state.
         return state;
     }
+
     const store = redux.createStore(countReducer);
    
     ------------This part is used in proj-----------
@@ -116,4 +118,8 @@ action.amount
 
 Redux TOOLKIT:
 --------------
-1. npm install @reduxjs/toolkit
+1. npm install @reduxjs/toolkit 
+2. import (creatSlice) from '@reduxjs/toolkit';
+3. To maintain different compoents of states.
+4. In the main store->index.js
+5. We created slices of states, which aren't related.

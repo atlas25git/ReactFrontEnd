@@ -1,0 +1,13 @@
+There are 2 types of approaches for auth:
+    1) Server side session-> 
+        Traditional, 
+        Identifier for the access given client stored with server.
+        Sent back to client, and server maps the identifiers with it.
+        Works great with tightly coupled application.
+        Which is both front end and backend are served by the same server.
+        But if one is served on server A, and the other on B then it's not of much use.
+        Thus the server is stateless in decoupled systems.
+
+    2) Authentication token
+        Send Email pass-> validated ->?yes -> permissionToken generated has a key, which is only known to server.
+        Client just has the hashed permission token, but it's private key is stored with server.

@@ -3,7 +3,7 @@ Handling Click Events:
 1. On all built in html elements we've full access to <div>,<h2>... to native DOM events to listen too.
 2. This could be used as a prop.
 3. JS method: document.getElementById('root').addEventListener()
-4. React: al default event listeneres in react start with on*
+4. React: all default event listeneres in react start with on*
             They take a fn as value.
             onClick={()=>{console.log('Clicked!')}}
             When inserting pre defined functions we just point the fn Name.
@@ -11,7 +11,7 @@ Handling Click Events:
 Component Fn:
 ------------
 1. We mention the fn in components and let the react know, it the executes them and others within them.
-2. React does the redering stuff once, hence we need to use states to circumvent this.
+2. React does the rendering stuff once, hence we need to use states to circumvent this.
 
 State:
 ------
@@ -21,7 +21,7 @@ State:
 4. States are created on  a per component basis.
 5. The prevalence of const: we do define the state return values by const.
 6. But we're also holding on to it to change but this dichotomy is answered by the fact that, '=' is not used
-   for re assignment, thus we use setTitle(val).
+   for re assignments in consts, thus we use setTitle(val).
 7. State doesn't re initalize the states on subsequent calls, it is done only for the first time.
 8. In the latter events react just grabs a hold of the value given and returns the same.
 
@@ -51,7 +51,7 @@ Adding Forms:
 
 Handling Form Submission:
 -------------------------
-1. Browser's default behaviour refreshes the form when submite button is pressed, hence sending an automatic req to the server
+1. Browser's default behaviour refreshes the form when submit button is pressed, hence sending an automatic req to the server
    about from submission. But we want to deal with is using js.
 2. To circumvent this we use: 
     const submitHandler = (event) => {

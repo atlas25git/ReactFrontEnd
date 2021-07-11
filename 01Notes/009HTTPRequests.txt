@@ -69,7 +69,7 @@ useEffect for making Requests
 1) Used if we want the data to be loadeds as soon as the page is visited, without the need of explicitly pressing any button.
 2) Used when data should be fetched in some component cycle.
 3) Now in this useEffect we can add a dependecy of the fn we're calling, if we use some external state in our fn.
-4) But this will thus trigger the infinite loop as compnent will change data, and data component.
+4) But this will thus trigger the infinite loop as compnent will change data, and data will do such with component.
 5) For this wwe simply wrap the fn in a useCallback state.
 
 Sending POST requsts:
@@ -93,7 +93,7 @@ async function addMovieHandler(movie){
 Custom Hooks:
 -------------
 1) We can't use our hook's fn to alter the state's value outside the component fn. 
-2) Hence to add mosularity to this, we're introduced with the concept of custom hooks.
+2) Hence to add modularity to this, we're introduced with the concept of custom hooks.
 3) Name starts with use*
 4) export 
 5) const useCount = () =>{
