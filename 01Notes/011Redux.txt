@@ -123,3 +123,32 @@ Redux TOOLKIT:
 3. To maintain different compoents of states.
 4. In the main store->index.js
 5. We created slices of states, which aren't related.
+6. We can skip the boiler plate of all those explicit if statements.
+7. We can mutate state here internally which would be interpreted as old way of creating new state.
+
+Connecting this to main aPP:
+-----------------------------
+1. Make slice's value stored in a const, and in createStore(counterSlice.reducers).
+2. Basically what slices actually do is they provide modularity to include multiple states in just one.
+    For this we import configureStore() -> now instead of createStore we'll use this.
+    Accepts an object, and reducer: counterSlice.reducers //main global reducer
+    In case if there are more than one, then we define an object form of it, as
+    { reducer: {counter: counterSlice.reducer ..etc}} -> this will behind the scene create all of these reducers combined single reducer.
+
+
+Dispatching actions using Redux Toolkit:
+----------------------------------------
+1. Here since we are not using explicit if statements, thus we get a unique action object created by the redux Toolkit,
+   and this can be done using counterSlice.actions.toggleCounter // a unique action generated, which will call the reducer of the same name.
+2. We create actions and then export besides default for the actions, and these are thus alongwith store imported in the component we
+    need them for.
+
+Multiple States:
+----------------
+1. createSlice -<> name='auth' ->intialState: intialAuthState, reducers: {}
+2. useSelector is used to select a particular state from the redux store.
+
+Advanced Redux:
+--------------
+1) Reducers should be pure, side-effect free, synchronous fn.
+2) Even useReducer hook has the same property.
