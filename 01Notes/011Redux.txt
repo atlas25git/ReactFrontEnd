@@ -152,3 +152,4 @@ Advanced Redux:
 --------------
 1) Reducers should be pure, side-effect free, synchronous fn.
 2) Even useReducer hook has the same property.
+3) start from advance redux.
