@@ -153,3 +153,8 @@ Advanced Redux:
 1) Reducers should be pure, side-effect free, synchronous fn.
 2) Even useReducer hook has the same property.
 3) start from advance redux.
+4) Don't ever run asynchronous code in redux fns.
+5) Rather there are 2 diff ways for this namely:
+    a) Component
+    b) Action Creators
+    
