@@ -1,0 +1,25 @@
+Traditional: Multi pages apps:
+------------------------------
+1. Traditionally we used multiple html pages stored statically or generated dynamically on the go.
+2. But this approach is not optimal as we lose all the states and stuff b/w pages, and have to rely on req res, cycles to re render states.
+3. With react we root for the JS to change instances on the client side JS app, and thus make it way more reactive, than conventional
+   html page fetches.
+4. In react when building complex applications we usually do so using a SPA, thus just one html req, res.
+5. Url changes are handled by the javaScript.
+
+React Router:
+-------------
+1. npm install react-router-dom
+PreReq: import and wrap root app component using BrowserRouter component.
+2. Defining and using routes:
+    a) Define a route, and when this url becomes active, the 
+        mapped component is rendered.
+    b) Demonstration:
+    import router
+    import someCompoent
+
+    <Route path="/someComponent">
+        <someCompoent/>
+    </Route>
+
+    c) Now on the given path our defined component will be loaded.

@@ -157,4 +157,26 @@ Advanced Redux:
 5) Rather there are 2 diff ways for this namely:
     a) Component
     b) Action Creators
-    
+
+a)Inside Componenets  
+    6) We at the final call used a useSate at the app.js level and as a dependency we added 
+        cart whose store slice we used in useState's dependency.    
+    7) Since here we were sending the entire cart state thus we used the PUT request so as to 
+        alter the part which have been changed, instead of the entire cart.
+    8) Here behind the hood action creator is creating objects which are being dispatched.
+
+b) Action Creators
+    Thunk: a fn with a delayed response.
+    We create an action creator fn  as a thunk which doesn't immidiately
+    return the action object but a fn which later does the part.
+    WorkFlow:
+    Here we selected cart state in app.js, in useEffect as dependency too.
+    From here we dispatched sendCartData(cart)
+    Which in turn got triggered at the cart-slice store.
+    Here we created a thunk action creator, which accepts the cart as argument.
+    From here we returned an asynchronous anonymous fn.
+    Which intially dispatches pending notification.
+    Then we created yet another async fn, which contains the fetch logic, and throws an error
+    when response status is not ok.
+    Now we ran this fn in a try block, await prefixed, and dispatched success in the try block.
+    And in the error block we dispatched our error.
