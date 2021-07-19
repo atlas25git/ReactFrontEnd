@@ -23,3 +23,64 @@ PreReq: import and wrap root app component using BrowserRouter component.
     </Route>
 
     c) Now on the given path our defined component will be loaded.
+3) So this was the way we dealt stuff using the url in the box, now to use links clickable, we proceed as:
+    a) One niave way would be to use anchor tags but this ain't optimal, as it refreshes the page.
+    b) To circumvent this issue react-router-dom introduces link component.
+    c) This takes a to as an input of url pointing the direction  to the component that is to be reloaded.
+    d) And thus here we prevent page refresh cycle.
+    e) Initally the Router is used to define a particular route, and the component that it has to load, and only
+        then thus the Link could be used.
+    f) <Route path='/welcome'>
+            <Welcome/>
+        </Route>
+        <Link to'/welcome'>SomeText</Link>
+
+NavLinks
+--------
+1) To highlight the current link user is at, rest is same as Link.
+2) <NavLink activeClassName={classes.active}> Welcome </NavLink>
+3) The active css will be applied when this link would be active.
+
+Dynamic Routes & PArams
+-----------------------
+1)  <Route path='/orbot/:xor'>
+        <NormiComponent/> // here we have access to whatever value is present in the url in place of xor.
+    </Route>
+2) Extracting url params:
+    import { useParams } from 'react-router-dom'
+     const params = useParams();
+     //Now elements of url can be accessed using
+     //the placeHolder as key.
+     //console.log(params.productID)
+We inlcude the routes in a  <Switch>
+                            </Switch>
+3) React routes get activated even for the slighest part of matching part, thus we need to ensure proper control flow.
+4) This generally happens in top to down manner that the generic to specific ones are reached, so this could be circumvented
+    if we place more specific routes above the generic ones.
+5) We can add exact in generic smaller routes, so that it confines at exact matchig.
+
+Nested Routes:
+--------------
+1) Routes if are in a component which is active, they'll be evaluated.
+2) For welcome page we have path = '/welcone/new-user', nested as for the path till welcome, welcome page will be activated.
+
+Redirect-User:
+--------------
+1) <Route path='/' exact>
+    <Redirect/> // Component provided by router
+   </Route>
+
+Lazy Loading:
+-------------
+1) Many a times all the imports are downloaded beforehand even before the particular code's requirement is raised.
+2) To deal with this we use inbuilt features of react .lazy() -> this downloads the code when particular component makes a call for it.
+3) As shown:
+    import React, {Suspense} from 'react';
+
+    //Now for a particular import do the following change:
+    const NewQuote = React.lazy(() => import('./pages/NewQuote'));
+
+    //As it might take some time downloading the data, to save unspecified access error, we use Suspense component provided by react.
+    //Wrap the entire route switch in <Suspense fallback = {some compnent like loading spinner}>
+                                        //routes
+                                      </Suspense>
