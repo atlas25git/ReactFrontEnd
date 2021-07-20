@@ -11,3 +11,68 @@ There are 2 types of approaches for auth:
     2) Authentication token
         Send Email pass-> validated ->?yes -> permissionToken generated has a key, which is only known to server.
         Client just has the hashed permission token, but it's private key is stored with server.
+
+
+Generic Auth Flow: Firebase:
+----------------------------
+1) Created a form, extract the entered values/
+2) Submit handler-> gets event object.
+3) Extract entered data, useState vs useRef.
+    This is done using:
+        const emailData = useRef();//Global Declaration
+        In html form element: ref=emailData
+4) Connect the refs and fields.
+    Inside the handler fn:
+        const email = definedRefName.current.value;
+5) if -> isLogin : fetch req in post mode with required fields.
+    {
+        method: 
+        body: JSON.stringify({
+            //object fields.\
+        })   
+    }
+6) Showing the msg received: Prop in res.ok else case and use windows.alert()-> to display the msg.
+
+Using Auth Contex for State management
+---------------------------------------
+1) Store/ auth-store.js
+2) React.createContext({
+        //default data
+    })
+3) After setting this up we create AuthContextPRovider = props =>{
+        return <AuthContext.Provider>{props.children}</AuthContext.Provider>
+    }
+4) Inside this fn we manage the state listed above. 
+5) !! -> converts any form of data in truth or false.
+6) Inside fn define login logout fns.
+7) Create a contextValue object, consisting of all the values as defined.
+8) Now in Auth tag put value = contextValue.
+9) Now we create a authContext state full const. 
+    const authCtx = useContext(AuthContext)
+10) Now fill in the values of context using authCtx.values notation.
+11) The values being the one received from the server.
+12) To redirect users when dealing with context and auth, we use a useHistory class.
+13) Whose object is now used to replace our corrent page with the one we intent to move on to.
+
+ Logout:
+ -------
+ 1) Since this is a token based authentication, thus the whole premise stands on the idea that our server doesn't know
+    about logged in state.
+2) Thus we just need to wipe clean our local states and contexts.
+
+Protecting Routes:
+------------------
+1) Certain routes should only be loaded based on a successful auth status.
+2) We basically use the bool isLogged in to dynamically load unload our specific routes, which we
+    do not want to be loaded.
+
+Persisting Auth Status:
+-----------------------
+1) Local Storage: we store the token here and check if it's present and thus we do not seek it in subsequent calls.
+2) Storing: 
+    localStorage.setItem('token',token); //key,value
+   Removing:
+   localStorage.removeItem('token')l
+3) const initialToken = localStorage.getItem('token');
+4) Ensuring the token is removed after the given duration:
+5) For this calculated time in ms, using a fn and now set up a timeout.
