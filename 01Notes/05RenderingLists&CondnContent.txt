@@ -24,7 +24,7 @@ Key:
 ----
 1. JS needs a unique key value so as to add the elements in the map in O(1), rather traversing the whole list and making the operation
     expensive, this way it searches through all and reloads each and every element.
-2. Once the keys are given ract can discern the position of the newly added item.
+2. Once the keys are given react can discern the position of the newly added item.
 
 Applying Filter:
 ----------------
@@ -69,7 +69,7 @@ Creating Dynamically Styled divs:
 ---------------------------------
 1. We can create a component for the div as in our case, div roots the class form-control.
 2. Thus we create a styled component FormControl, here we use styled.div``
-3. Inside the backTicks paset the entire css of form control.
+3. Inside the backTicks passed the entire css of form control.
 4. To pass the invalid class, we can either do that using className={!invalild && 'invalid'}, or we can do that using props method.
 5. Props method: invalid={!isValid}, now this invalid prop could be used inside those `` as:
     color: ${props => (props.invalid ? 'red' :'black')};

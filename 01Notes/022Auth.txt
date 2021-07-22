@@ -1,4 +1,5 @@
 There are 2 types of approaches for auth:
+++++++++++++++++++++++++++++++++++++++++
     1) Server side session-> 
         Traditional, 
         Identifier for the access given client stored with server.

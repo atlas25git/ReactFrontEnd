@@ -26,7 +26,7 @@ Sending Get Requests
 
 4) Async Await: this just adds to the readablility of code, by eliminating .then(s) //
     Transforms in to .then paradigms.
-    async function fetchM<oviesHandler()
+    async function fetchMoviesHandler()
     {
         const response = await fetch(url);
         const data = await response.json();
@@ -61,7 +61,7 @@ Sending Get Requests
         setError(error) //> the error state
     }
 
-7) Noe this error generated could be used to render something on the screem to handle the contingencies.
+7) Now this error generated could be used to render something on the screem to handle the contingencies.
 8) {!isLoading && error && <p>{error}</p>}//error is the state that we have created.
 
 useEffect for making Requests

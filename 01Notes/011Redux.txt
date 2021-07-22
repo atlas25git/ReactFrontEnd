@@ -11,10 +11,10 @@ States:
         B) Suitable for low frequency updates.
 
 3) Working of Redux:
-    1) There's on centra data store.
+    1) There's one central data store.
     2) Components subscribe to this CDS, and whenever there's a change CDS notifies them.
     3) Components do not directly manipulate data in CDS, we've a downward stream only.
-    4) Reduer fn mutates the CDS content.
+    4) Reducer fn mutates the CDS content.
     5) Componenets trigger actions which leads to Reducer, and then it alters the CDS.
 
             fwd->
