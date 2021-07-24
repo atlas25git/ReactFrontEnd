@@ -29,9 +29,94 @@ UseReducer:
 -----------
 1. Complex state management, on the lines of useState.
 2. PowerFul alternative for complex state management. When states depend on other states.
-    const [state,dispatchFn] = useReducer(reducerFnm, intialState, initFn);
+    const [state,dispatchFn] = useReducer(reducerFn, intialState, initFn);
+        Here basically we call reducer fn using the dispacthFn we'd defined.
+        And under whose body we structure the control flow for the states.
+3. This could be used in the case where one of our state depends upon snapshots of 2 other states,
+   this would restrict us from using the fnl notaion using the prevState here.
+4. Even if we do use the fn notaion then too we'll get the prev state of the state in question not the 
+   external one on which we depend.
+5. Multiple states may not be executed in the exact sequence all the time.
+6. Object Destructuring:
+    const{ propertyName: propertyAlias } = complexObject;
+    propertyAlias will contain now propertyName of complexObject.
+
 
 Context:
 --------
 1. Provider and Consumer.
 2. Once in provider every component at any level could consume.
+3. To circumvent the trail of props passing through various components.
+4. These indirect connections often become way too complex.
+5. Context could be one for a global variable, or for more than one of them.
+6. Wrap the entire components with 
+    <AuthContext.Provider value={{
+      //default object value
+      isLoggedIn: false,
+    }}>
+    
+    </AuthContext.Provider>
+7. AuthContext can listen using either a react hook or a consumer,
+    wrap everything with, the child compnents who require access to global var.
+
+    <AuthContext.Consumer>
+    //jsx code
+    {
+      //object of auth 
+      (ctx) => {
+        return (
+          //html code 
+          //context values could be
+          //used as ctx.valName
+        )
+      }
+    }
+    </AuthContext.Consumer>
+8. Now we can set the default state for login say, and now we just need to put it
+   in the context provider's object, thus we won't now be required prop drilling.
+
+9. The other way : USE CONTEXT HOOK
+-----------------------------------
+
+10. Import useContext(AuthContext), inside the bracks, is a pointer to context
+    we want to tap in to.
+11. const ctx = useContext(AuthContext);
+
+Making context dynamic:
+-----------------------
+12. Dynamic context passed with data + function.
+    <AuthContext.Provider value={{
+      //default object value
+      isLoggedIn: false,
+      onLogout: logoutHandler
+    }}>
+    
+    </AuthContext.Provider>
+    Now every listening component will have access to onLogout fn as well.
+13. For the components which are very specific with the passed props, it's
+    better to not use context here.
+14. Context won't be used for the components that are meant to be reusable.
+15. Also not optimized for high freq changes.
+
+Rules for HOOKS:
+===============+
+1. Only allowed to use in react component fns or custom hooks.
+2. Not allowed to be called in nested fns or any block statements.
+3. Add everything we refer inside useEffect as a dependency.
+
+Conditional Focusing:
+--------------------
+1. Add inputRef to ref of any input html tag.
+2. Inside useEffect inputRef.current.focus();
+3. But this won't work.
+4. We use useImperativeHandle
+5. useImperativeHandle( ref,
+  return{
+    focus: activate
+  });
+6. To enable a component to take a ref we use 
+    const Input = React.forwardRef((props,ref) => {
+
+    })
+7. This all had to be done coz, refs can't be given to function components.
+8. Theswitch logic is still been implemented from emailInputRef.current.focus();
