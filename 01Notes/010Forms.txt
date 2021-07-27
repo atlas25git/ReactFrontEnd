@@ -6,3 +6,9 @@ Forms:
     B) loseFocus
     C) onKeyStroke
 3) preventDefault : so as to not send the req http to server.
+4) userTouched state is set true in form submit fn.
+
+Lost focus
+-----------
+1) Just like onChange onBlur is also a built in event handler.
+2) We'll make a custom fn thus to handle the event when it is trigerred.

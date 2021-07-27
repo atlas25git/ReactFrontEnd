@@ -1,0 +1,84 @@
+Manual Testing
+--------------
+1) The testing we do during dev phase by running the code on browser is pretty much just manual labourous work.
+2) However with the increase of components in the application it becomes hard to test each possible combination of features.
+3) Thus we resort to automated testing, this makes our work easy and thus helps us detect errors faster.
+
+Types:
+------
+1) Unit -> for the smallest unit of components.
+2) Integration testing.//components working together
+3) End 2 End testing.//testing entire work flow end two end
+In decreasing order of numeric count.
+
+Platform and tools:
+-------------------
+1) Jest
+2) React Testing Library
+3) Both installed when working with create react app.
+
+Conventions:
+------------
+1) Setup.test.js -> to configure the required setup for testing.
+2) App.js -> App.test.js
+
+App.test.js:
+
+import {render,screen} from '@testing-library/react';
+import App from './App';
+
+test('Description of the test', ()=>{//anonymous code contains the actual testing code.
+    render(<App/>);//renders the component
+    //grabs the element by text on the virtual screen
+    const linkElement = screen.getByText(/learn react/i);
+    //check for the given regex's validity
+    expect(linkElement).toBeInTheDocument();
+});
+
+3) We've a test script to run a server to perform these testings.
+
+3 As of testing:
+1) Arrange : Setup test data,condn,env.
+2) Act     : Runs logic tto be tested.
+2)Assert   : Compare execution results with expected.
+
+Grouping: Testing Suites
+------------------------
+1) To group a suite we use 
+    //A global fn:
+    describe('Suite name', ()=>{
+        //Grouped together
+        //test();
+    })
+
+Testing UI:
+-----------
+1) userEvent is used to trigger user events in the simulated
+    screen.
+    As: 
+    userEvent.click(grabbedButtonElement);
+    expect();
+
+Tests won't break if we just use simple components to exact the output
+as before.
+
+Testing Async Functions:
+------------------------
+
+render()
+The only diff here gonna be is using findAllByRole queries, rather the
+get ones,  as they return a promise.
+And add a async to test's second arg anonymous fn.
+
+
+Isolating testing env, from ext API alterations:
+------------------------------------------------
+1. We either don't send the req, as fetch is a fn not written by us Thus
+    we only work tests for our components, or -> use some decoy server.
+2. Mocking: window.fetch = jest.fn //creates a dummy fn for us of fetch
+3. We can now set up a response to this mock fetch fn.
+    window.fetch.mockResolvedValueOnce({
+        json: asyn () => [{id: 'id', title: 'First Post'}],
+    });
+
+

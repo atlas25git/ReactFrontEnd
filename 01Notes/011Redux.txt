@@ -26,19 +26,31 @@ States:
         |              |subs
         ------------Component
         <-Dispatch
-    
+
+
+
 ReduxCore:
 ----------
+Meta:
+++++
+1.  Basically here we make an object of the createStore() class and thus provide it with a fn, thereby declaring default state and coding
+    conditional behavior based on the value of action passed.
+2.  This basically instantiates the stuff for us, further we create a custom fn to run any time a change is detected in the store's state
+    and pass it into subscribe method of the object of createStore() class.
+3.  And now this is run every time there's a state change.
+4.  Store.dispatch is used to perform a particular behavior on state that has already been defined in the instantiating fn of the createStore
+    class's object.
+
 1) npm install redux//main implementation however to connect it with react we use a helper// react-redux .
 2) Reducer fn: args(OldState,DispatchedAction)->op(NewStateObject)
 
 3) 
 
-    cosnt redux = require('redux');
-    
+    cosnt redux = require('redux');//when run in node in reacct its colliqual: import redux from 'redux';
+
     const countReducer = (state={counter:0},action) => {
         if(action.type==='increment')
-        {
+        {   
             return {
             counter: state.counter+1;
             }
@@ -53,6 +65,7 @@ ReduxCore:
     ------------This part is used in proj-----------
     export default store;
     ------------------------------------------------
+    It is the compoents of the react that subscribe and dispatch stuff to store.
    
     const counterSubscriber = () =>
     {
@@ -60,20 +73,22 @@ ReduxCore:
         console.log(latestState);
     }
 
-    store.subscribe(counterSubscriber);
     //here reducer will run counterSubscriber everytime data in CDS altered.
-
-    store.dispatch({type: 'increment'});//runs the reducer which is a simple fn with just one return.
+    store.subscribe(counterSubscriber);
 
     //On code execution counter subscriber will be executed for the dispatched action.
+    store.dispatch({type: 'increment'});
+    //runs the reducer which is a simple fn with just one return.
+
 
 ProvidingRedux to React
 -----------------------
 1. In app.js file:
     import {Provider} from 'react-redux';
+    import store from './store/index';
 
     ReactDOM.render(
-        <Provider>
+        <Provider store={store}>
             <App/>
         </Provider>,
         document.getElementById('root)
@@ -99,6 +114,7 @@ Dispatching From Componenets
     //In component fn:
     //In button's onClick-> addFn handlers;
     1. create an objet of useDispatch(); class
+    const dispatch = useDispatch();
     2. Now from the handler fns wired in the buttons make dispatch calls:
         
         const incrementHandler=()=>{
@@ -115,9 +131,17 @@ Adding Payloads in Dispatches:
 action.amount
 
 ##WE DO NOT CHANGE EXISTING STATE, AWLAYS RETURN A NEW VALUE.
+ Multiple state values are added to the reducer using the curly braces notation.
+ state = {state1,state2};
 
 Redux TOOLKIT:
 --------------
+Meta: CreateStore part is kinda same for now, but now the reducer fn has been created using createSlice.
+      Even subscribe and other paradigms just work the same way as before.
+      Since here the reducer fn is passed to the createStore class, during object instantiation, thus to handle more than
+      one slice we use configure store fn.
+
+
 1. npm install @reduxjs/toolkit 
 2. import (creatSlice) from '@reduxjs/toolkit';
 3. To maintain different compoents of states.
@@ -125,6 +149,16 @@ Redux TOOLKIT:
 5. We created slices of states, which aren't related.
 6. We can skip the boiler plate of all those explicit if statements.
 7. We can mutate state here internally which would be interpreted as old way of creating new state.
+8. Here we can mutate the states directly which in turn is treated the right way under the hood.
+
+createSlice({
+    name: 'counter',
+    intialState,//const consisting of states
+    reducers: {
+        increment(state){};
+        decrement(State){};
+    }
+})
 
 Connecting this to main aPP:
 -----------------------------
@@ -142,6 +176,15 @@ Dispatching actions using Redux Toolkit:
    and this can be done using counterSlice.actions.toggleCounter // a unique action generated, which will call the reducer of the same name.
 2. We create actions and then export besides default for the actions, and these are thus alongwith store imported in the component we
     need them for.
+3. Export them from the store as:
+    export const counterActions = counterSlice.actions;
+
+    now in the component file:
+    import {counterActions} from '../store/index';
+
+    dispatch(counterActions.increment(x)); 
+    //same as passing stuff earlier using dispatch as if conditionals
+    //x is accessed using action.payload notation. 
 
 Multiple States:
 ----------------

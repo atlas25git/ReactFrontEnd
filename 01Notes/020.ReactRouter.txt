@@ -51,6 +51,7 @@ PreReq: import and wrap root app component using BrowserRouter component.
     </Route>
 
     c) Now on the given path our defined component will be loaded.
+
 3) So this was the way we dealt stuff using the url in the box, now to use links clickable, we proceed as:
     a) One niave way would be to use anchor tags but this ain't optimal, as it refreshes the page.
     b) To circumvent this issue react-router-dom introduces link component.

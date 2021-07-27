@@ -71,6 +71,11 @@ useEffect for making Requests
 3) Now in this useEffect we can add a dependecy of the fn we're calling, if we use some external state in our fn.
 4) But this will thus trigger the infinite loop as compnent will change data, and data will do such with component.
 5) For this wwe simply wrap the fn in a useCallback state.
+6) It could be circumvented by using [], as a dependecy but we might need to provide fn we inturn uses some external states.
+7) Thus to deal with this we use useCallback.
+8) Import useCallback 
+9) const fetchMoviesHandler = useCallback( async () => {//entire fn },[//external dependencies]);    
+
 
 Sending POST requsts:
 --------------------
@@ -92,6 +97,8 @@ async function addMovieHandler(movie){
 
 Custom Hooks:
 -------------
+Meta: Basically just a fancy way of modularising logic involving states.
+----
 1) We can't use our hook's fn to alter the state's value outside the component fn. 
 2) Hence to add modularity to this, we're introduced with the concept of custom hooks.
 3) Name starts with use*
@@ -110,3 +117,31 @@ const useHttp = () => {
 
 };
 export default useHttp;
+
+eg:
+===
+
+import {useState,useEffect} from 'react';
+
+const useCounter = () => {
+    const [counter,setCounter] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(()=>{
+            setCounter((prevCounter)->prevCounter+1);},1000);
+        
+        return () => clearInterval(interval);
+    }, []);
+    return counter;
+};
+
+expost default useCounter;  
+
+Implementation:
+
+const ForwardCounter = () => {
+    const counter = useCounter();
+    return <Card>{counter}</Card>;
+}
+
+export default ForwardCounter;
