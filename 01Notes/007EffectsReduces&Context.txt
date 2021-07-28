@@ -73,7 +73,7 @@ Context:
     }
     </AuthContext.Consumer>
 8. Now we can set the default state for login say, and now we just need to put it
-   in the context provider's object, thus we won't now be required prop drilling.
+   in the context provider's object, thus we won't now be required to do prop drilling.
 
 9. The other way : USE CONTEXT HOOK
 -----------------------------------
@@ -119,7 +119,7 @@ Conditional Focusing:
 
     })
 7. This all had to be done coz, refs can't be given to function components.
-8. Theswitch logic is still been implemented from emailInputRef.current.focus();
+8. The switch logic is still been implemented from emailInputRef.current.focus();
 
 
 ----------------------/src/store/auth-context.js-----------------------------------

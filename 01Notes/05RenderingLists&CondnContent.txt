@@ -85,7 +85,7 @@ Using CSS module:
 1. Import styles from 'cssFilePath'
 2. Rename css file as name.module.css
 3. Now our styles will be an object, and we can access particular styles using style.className
-4. This is provide us with the required scoping.
+4. This is to provide us with the required scoping.
 5. Dynamic styling:
     5.1 styles['form-control']  
     5.2 className={`${styles['form-control]} ${!isValid && styles['invalid']}`}

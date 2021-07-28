@@ -42,13 +42,13 @@ Sending Get Requests
         }   
     }
 
-5) Loading component: create a new state, and once we eneter the async fn
+5) Loading component: create a new state, and once we enter the async fn
         above fetch put isLoading's state as true, and then once we exit the fn , 
         put the state to off mode.
         Then in html element we can use short cicuiting with && to toggle the functionality.
 
 6) Handling http  errors:
-    Introduce a error state using useState
+    Introduce an error state using useState
     
     try {
         //in the response that we fetched we can now check for res.ok || res.status
@@ -98,7 +98,7 @@ async function addMovieHandler(movie){
 Custom Hooks:
 -------------
 Meta: Basically just a fancy way of modularising logic involving states.
-----
+-----
 1) We can't use our hook's fn to alter the state's value outside the component fn. 
 2) Hence to add modularity to this, we're introduced with the concept of custom hooks.
 3) Name starts with use*

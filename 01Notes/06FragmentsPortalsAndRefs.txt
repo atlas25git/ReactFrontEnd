@@ -21,6 +21,29 @@ Portal:
 8. ReactDOM.createPortal(<Backdrop onClick={props.onConfirm}/> ,document.getElementByID('backdrop-root') )
     similarly we add other overlays as well. 
 
+And this maneuver is done inside the component:
+
+const ErrorModal = (props) => {
+  return (
+    <React.Fragment>
+      {ReactDOM.createPortal(
+        <Backdrop onConfirm={props.onConfirm} />,
+        document.getElementById('backdrop-root')
+      )}
+      {ReactDOM.createPortal(
+        <ModalOverlay
+          title={props.title}
+          message={props.message}
+          onConfirm={props.onConfirm}
+        />,
+        document.getElementById('overlay-root')
+      )}
+    </React.Fragment>
+  );
+};
+
+export default ErrorModal;
+
 References:
 -----------
 1. We can connect any html element with References, ref = {definedRefName}, definedRefName will now have the given value.
@@ -31,3 +54,4 @@ References:
     saved in this ref, and thus this could be used as refName.current.val;
 5. Now for the resetting logic we can defineRef.current.val = '';
 6. Ref are uncontrolled components.
+

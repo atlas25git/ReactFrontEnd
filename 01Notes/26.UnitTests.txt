@@ -28,9 +28,11 @@ import {render,screen} from '@testing-library/react';
 import App from './App';
 
 test('Description of the test', ()=>{//anonymous code contains the actual testing code.
-    render(<App/>);//renders the component
+    render(<App/>);//renders the component on a virtual screen
+    
     //grabs the element by text on the virtual screen
     const linkElement = screen.getByText(/learn react/i);
+    
     //check for the given regex's validity
     expect(linkElement).toBeInTheDocument();
 });
@@ -39,7 +41,7 @@ test('Description of the test', ()=>{//anonymous code contains the actual testin
 
 3 As of testing:
 1) Arrange : Setup test data,condn,env.
-2) Act     : Runs logic tto be tested.
+2) Act     : Runs logic to be tested.
 2)Assert   : Compare execution results with expected.
 
 Grouping: Testing Suites
