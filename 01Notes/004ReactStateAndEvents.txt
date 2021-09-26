@@ -10,7 +10,7 @@ Handling Click Events:
 
 Component Fn:
 ------------
-1. We mention the fn in components and let the react know, it the executes them and others within them.
+1. We mention the fn in components and let the react know, it then executes them and others within them.
 2. React does the rendering stuff once, hence we need to use states to circumvent this.
 
 State:
@@ -35,6 +35,7 @@ Adding Forms:
             console.log(event.target.value);
         }
         <input type='text' onChange={titleChangeHandler}/> 
+        
 4. useState is used here to store the input in some variables.
 5. We add multiple states using useState, for all the form's input fields.
 6. Value accessed using eventobject are always strings.

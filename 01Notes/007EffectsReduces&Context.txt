@@ -2,7 +2,7 @@ UseEffect Dependencies:
 -----------------------
 1. useEffect(() => {
     //fn
-},[//Dependencies]);
+   },[//Dependencies]);
 2. Basically runs the code on some side effect being triggered.
 3. This can be used to check for multiple dependencies and thier changes inherent.
 4. This adds modularity to code as we can check for multiple conditons on change i just once place.

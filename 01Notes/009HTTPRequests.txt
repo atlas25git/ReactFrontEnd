@@ -26,6 +26,7 @@ Sending Get Requests
 
 4) Async Await: this just adds to the readablility of code, by eliminating .then(s) //
     Transforms in to .then paradigms.
+    
     async function fetchMoviesHandler()
     {
         const response = await fetch(url);
@@ -98,7 +99,8 @@ async function addMovieHandler(movie){
 Custom Hooks:
 -------------
 Meta: Basically just a fancy way of modularising logic involving states.
------
+-----+
+
 1) We can't use our hook's fn to alter the state's value outside the component fn. 
 2) Hence to add modularity to this, we're introduced with the concept of custom hooks.
 3) Name starts with use*
