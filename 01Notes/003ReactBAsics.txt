@@ -15,9 +15,14 @@ Directory:
 Components:
 -----------
 1. A component in React is just a JS fn.
+   Custom components shuold start with a capital letter.
 2. {} -> used to run basic JS expressions.
 3. Props :
-    In component simply put PropName={PropValue}
+    In component simply put 
+    <ComponentName>
+        PropName={PropValue}
+    </ComponentName>
+    Props are passed as key value pairs.
     In the particular component this could be accessed as fnName(prop){ {prop.ValName} }
     {} when we are using variables, hard coded value could also be declared as PropName = "Name"
 4. toLocaleString('CountryCode',{month:'long'})
@@ -32,7 +37,9 @@ Composition:
 2. We acc to the norm setup a card.js component for bg styling.
 3. But in react we just can't simply use custom components to wrap around other components.
 4. Children prop is used here hence.
-5. return <div className='card'>{props.children}</div>
+5.      
+        return <div className='card'>{props.children}</div>
+
 6. This is a reserved one, and is implicitly passed.
 7. Now the classes couldn't be just added to custom components as in the case of jsx elements.
 8. Hence here this is done as: 

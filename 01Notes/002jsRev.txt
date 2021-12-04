@@ -15,7 +15,7 @@ function print(arg){console.log()};
 
 Exports Imports
 ---------------
-When exported default then any name could be used, but if they aren't any default 
+When exported default then any name could be used, but if there aren't any default 
 then we better use named imports.
 
 In Js

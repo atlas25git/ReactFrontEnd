@@ -22,7 +22,7 @@ State:
 5. The prevalence of const: we do define the state return values by const.
 6. But we're also holding on to it to change but this dichotomy is answered by the fact that, '=' is not used
    for re assignments in consts, thus we use setTitle(val).
-7. State doesn't re initalize the states on subsequent calls, it is done only for the first time.
+7. React doesn't re initalize the states on subsequent calls, it is done only for the first time.
 8. In the latter events react just grabs a hold of the value given and returns the same.
 
 Adding Forms:
